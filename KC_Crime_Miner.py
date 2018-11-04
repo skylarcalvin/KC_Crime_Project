@@ -12,3 +12,5 @@ client = Socrata(socrata_domain, socrata_token)
 
 results = client.get(socrata_dataset_id)
 df = pd.DataFrame.from_dict(results)
+
+df.to_csv('KC_Crime_2018_Sample.csv')
