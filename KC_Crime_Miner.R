@@ -15,6 +15,9 @@ library(purrr)
 library(lubridate)
 library(RMySQL)
 
+# Prompt for a password for Socrata.
+pwd = .rs.askForPassword("Please enter your Socrata password.")
+
 # Connect to JSON and parse data into dataframe.
 KC_Crime <- read.socrata(
     "https://data.kcmo.org/resource/nyg5-tzkz.json",
@@ -82,14 +85,14 @@ KC_Crime$description <- fct_collapse(
     'Suicude' = c('Suicide By Hanging', 'Suicide by Other Mea', 'Suicide By Shooting', 'Suicide By Sleeping')
 )
 
-# Prompt for a password
-pwd <- .rs.askForPassword('Please enter your Socrata password')
+# Prompt for a password for the MYSQL instance.
+pwd <- .rs.askForPassword('Please enter your Mysql password')
 
 # Open a database connection with the local MySQL database
 mydb <- dbConnect(
     MySQL(),
     user = 'rducky',
-    password = pwd,
+    password = 'Fr3ude#23',
     dbname = 'datascience',
     host = 'calvin-tech.net'
 )
