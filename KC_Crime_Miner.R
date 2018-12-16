@@ -82,13 +82,16 @@ KC_Crime$description <- fct_collapse(
     'Suicude' = c('Suicide By Hanging', 'Suicide by Other Mea', 'Suicide By Shooting', 'Suicide By Sleeping')
 )
 
+# Prompt for a password
+pwd <- .rs.askForPassword('Please enter your Socrata password')
+
 # Open a database connection with the local MySQL database
 mydb <- dbConnect(
     MySQL(),
     user = 'rducky',
-    password = 'Fr3ude#23',
+    password = pwd,
     dbname = 'datascience',
-    host = 'localhost'
+    host = 'calvin-tech.net'
 )
 
 # Check if the KC_Crime Table exists, drop it if so, create a new KC_Crome table then load the dataframe into it.
